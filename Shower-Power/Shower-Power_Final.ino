@@ -8,7 +8,7 @@
 #define LED_PIN    3
 #define LED_COUNT 12
 
-//defining critical showertime limits, crititcal time starts after 1minute, super critical from 2min
+//defining critical showertime limits, crititcal time starts after 1minute, super critical from 2min. using ardiuno "time" function
 #define TIME_CRITICAL 60000//1*60*1000
 #define TIME_SUPER_CRITICAL 120000 // 2*60*1000
 unsigned long time;
