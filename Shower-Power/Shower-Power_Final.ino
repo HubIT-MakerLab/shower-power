@@ -9,10 +9,12 @@
 #define LED_COUNT 12
 
 //defining critical showertime limits, crititcal time starts after 1minute, super critical from 2min. using ardiuno "time" function
-#define TIME_CRITICAL 60000//1*60*1000
-#define TIME_SUPER_CRITICAL 120000 // 2*60*1000
-unsigned long time;
+//#define TIME_CRITICAL 60000//1*60*1000
+//#define TIME_SUPER_CRITICAL 120000 // 2*60*1000
 
+#define IME_CRITICAL 600000 //after 10 min 10*60*1000
+#define TIME_SUPER_CRITICAL 900000 // after 15 min 15*60*1000
+unsigned long time;
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 OneWire oneWire(ONE_WIRE_BUS); 
@@ -59,11 +61,12 @@ void loop(void)
     //RED
    set_color(255,0,0);
   }
-  else if (temp>=36 || time >= TIME_CRITICAL)
+  else if (temp>=36 || time >= TIME_CRITICAL) // || temp<=15 if cold, less energy consuming but still water consuming
   {
     //YELLOW -- slightly less green to have a less greenish yellow
     set_color(255,215,0);
   }
+ 
   else
   {
     //GREEN
